@@ -1,62 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cubo en Realidad Aumentada (WebAR)</title>
-  
-  <!-- Librería A-Frame (Motor 3D) -->
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  
-  <!-- Librería AR.js (Tracking de cámara) -->
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-    .ar-overlay {
-      position: absolute;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 999;
-      background: rgba(0, 0, 0, 0.75);
-      color: #ffffff;
-      padding: 12px 20px;
-      border-radius: 20px;
-      font-size: 14px;
-      text-align: center;
-      pointer-events: none;
-    }
-  </style>
+<title>AR.js A-Frame Location-based</title>
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.7/three.js/build/ar-threex-location-only.js'></script>
+<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar.js'></script>
 </head>
 <body>
-
-  <!-- Mensaje de instrucción flotante -->
-  <div class="ar-overlay">
-    📷 Apunta tu cámara al <b>marcador Hiro</b>
-  </div>
-
-  <!-- Escena de Realidad Aumentada -->
-  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-    
-    <!-- Marcador estándar 'Hiro' -->
-    <a-marker preset="hiro">
-      <!-- Cubo 3D animado que gira sobre sí mismo -->
-      <a-box 
-        position="0 0.5 0" 
-        material="color: #00e5ff; opacity: 0.85;" 
-        animation="property: rotation; to: 0 360 360; loop: true; dur: 5000">
-      </a-box>
-    </a-marker>
-
-    <!-- Cámara para la escena WebAR -->
-    <a-entity camera></a-entity>
-
-  </a-scene>
-
+<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+    <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
+    <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: <add-your-latitude>; longitude: <add-your-longitude>" scale="10 10 10"></a-entity>
+</a-scene>
 </body>
 </html>
