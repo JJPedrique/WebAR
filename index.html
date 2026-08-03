@@ -1,114 +1,62 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello WebXR!</title>
+  <title>Cubo en Realidad Aumentada (WebAR)</title>
+  
+  <!-- Librería A-Frame (Motor 3D) -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  
+  <!-- Librería AR.js (Tracking de cámara) -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-  <!-- three.js -->
-  <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
   <style>
-    body { margin: 0; overflow: hidden; }
-    #xr-button {
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    .ar-overlay {
       position: absolute;
-      top: 20px;
+      top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 12px 24px;
-      font-size: 16px;
-      z-index: 10;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-align: center;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
 
-<button id="xr-button" onclick="activateXR()">Start Hello WebXR</button>
+  <!-- Mensaje de instrucción flotante -->
+  <div class="ar-overlay">
+    📷 Apunta tu cámara al <b>marcador Hiro</b>
+  </div>
 
-<script>
-async function activateXR() {
-  // 1. Validar si el navegador y dispositivo soportan WebXR e immersive-ar
-  if (!navigator.xr) {
-    alert("WebXR no está disponible en este navegador.");
-    return;
-  }
+  <!-- Escena de Realidad Aumentada -->
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    
+    <!-- Marcador estándar 'Hiro' -->
+    <a-marker preset="hiro">
+      <!-- Cubo 3D animado que gira sobre sí mismo -->
+      <a-box 
+        position="0 0.5 0" 
+        material="color: #00e5ff; opacity: 0.85;" 
+        animation="property: rotation; to: 0 360 360; loop: true; dur: 5000">
+      </a-box>
+    </a-marker>
 
-  const isSupported = await navigator.xr.isSessionSupported("immersive-ar");
-  if (!isSupported) {
-    alert("El modo 'immersive-ar' no es compatible con este dispositivo.");
-    return;
-  }
+    <!-- Cámara para la escena WebAR -->
+    <a-entity camera></a-entity>
 
-  // Ocultar botón de inicio
-  document.getElementById("xr-button").style.display = "none";
+  </a-scene>
 
-  // 2. Crear canvas y contexto WebGL compatible con WebXR
-  const canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  const gl = canvas.getContext("webgl", { xrCompatible: true });
-
-  const scene = new THREE.Scene();
-
-  const materials = [
-    new THREE.MeshBasicMaterial({ color: 0xff0000 }),
-    new THREE.MeshBasicMaterial({ color: 0x0000ff }),
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-    new THREE.MeshBasicMaterial({ color: 0xff00ff }),
-    new THREE.MeshBasicMaterial({ color: 0x00ffff }),
-    new THREE.MeshBasicMaterial({ color: 0xffff00 })
-  ];
-
-  // 3. Crear el cubo y ubicarlo frente al usuario (0.5 metros adelante)
-  const cube = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), materials);
-  cube.position.set(0, 0, -0.5);
-  scene.add(cube);
-
-  // 4. Configurar el renderer
-  const renderer = new THREE.WebGLRenderer({
-    alpha: true,
-    preserveDrawingBuffer: true,
-    canvas: canvas,
-    context: gl
-  });
-  renderer.autoClear = false;
-
-  const camera = new THREE.PerspectiveCamera();
-  camera.matrixAutoUpdate = false;
-
-  // 5. Iniciar la sesión WebXR
-  const session = await navigator.xr.requestSession("immersive-ar");
-  session.updateRenderState({
-    baseLayer: new XRWebGLLayer(session, gl)
-  });
-
-  const referenceSpace = await session.requestReferenceSpace('local');
-
-  // 6. Bucle de renderizado
-  const onXRFrame = (time, frame) => {
-    session.requestAnimationFrame(onXRFrame);
-
-    const baseLayer = session.renderState.baseLayer;
-    gl.bindFramebuffer(gl.FRAMEBUFFER, baseLayer.framebuffer);
-
-    const pose = frame.getViewerPose(referenceSpace);
-    if (pose) {
-      // Soporta tanto móvil (1 vista) como visores/gafas (2 vistas)
-      for (const view of pose.views) {
-        const viewport = baseLayer.getViewport(view);
-        
-        // Asignación correcta de viewport sin redimensionar el canvas por frame
-        renderer.setViewport(viewport.x, viewport.y, viewport.width, viewport.height);
-
-        camera.matrix.fromArray(view.transform.matrix);
-        camera.projectionMatrix.fromArray(view.projectionMatrix);
-        camera.updateMatrixWorld(true);
-
-        renderer.render(scene, camera);
-      }
-    }
-  };
-
-  session.requestAnimationFrame(onXRFrame);
-}
-</script>
 </body>
 </html>
