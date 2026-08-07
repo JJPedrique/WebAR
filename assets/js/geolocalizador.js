@@ -29,14 +29,12 @@ function exito(posicion) {
 
         
     SandBox.innerHTML = `    
-        <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
-            <a-entity 
-                material='color: red' 
-                geometry='primitive: box' 
-                gps-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
-                scale="1 1 1">
-            </a-entity>
-        </a-scene>`
+        <a-entity 
+            material='color: red' 
+            geometry='primitive: box' 
+            gps-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
+            scale="1 1 1">
+        </a-entity>`
 }
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
