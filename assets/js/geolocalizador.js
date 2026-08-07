@@ -22,7 +22,7 @@ function obtenerUbicacion() {
 
 // Se ejecuta si el usuario acepta y se obtiene la ubicación
 function exito(posicion) {
-    const SandBox = document.getElementById("");
+    const SandBox = document.getElementById("SandBox");
     const latitud = posicion.coords.latitude;
     const longitud = posicion.coords.longitude;
     const precision = posicion.coords.accuracy; // Precisión en metros
