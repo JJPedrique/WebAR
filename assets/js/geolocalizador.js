@@ -37,7 +37,7 @@ function exito(posicion) {
             geometry='primitive: box' 
             gps-new-entity-place="latitude: ${latitud}; 
             longitude: ${longitud}" 
-            scale="10 10 10">
+            scale="1 1 1">
         </a-entity>`);
 }
 

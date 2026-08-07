@@ -7,8 +7,15 @@
 </head>
 <body>
     <a-scene id="SandBox" vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+        
         <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
-       
+        
+        <a-entity material='color: blue'
+            geometry='primitive: box' 
+            gps-new-entity-place="latitude: 10.664075; 
+            longitude: -71.66499" 
+            scale="1 1 1">
+        </a-entity>
 
     </a-scene>
 
