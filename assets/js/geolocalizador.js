@@ -31,7 +31,7 @@ function exito(posicion) {
     console.log(`Longitud: ${longitud}`);
     console.log(`Precisión: ±${precision} metros`);
 
-    /*  
+    
     SandBox.insertAdjacentHTML('afterBegin',`
         <a-entity material='color: red'
             geometry='primitive: box' 
@@ -39,8 +39,9 @@ function exito(posicion) {
             longitude: ${longitud}" 
             scale="1 1 1">
         </a-entity>`);
-    */
+    
 
+        /*
     SandBox.insertAdjacentHTML('afterBegin',`
         <a-entity 
             gltf-model="assets/magnemite/scene.gltf" 
@@ -49,7 +50,8 @@ function exito(posicion) {
             gps-entity-place="longitude: ${longitud}; latitude: ${latitud};" 
             animation-mixer="loop: repeat">
         </a-entity>`);
-}
+*/
+        }
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
 function error(err) {
