@@ -31,13 +31,23 @@ function exito(posicion) {
     console.log(`Longitud: ${longitud}`);
     console.log(`Precisión: ±${precision} metros`);
 
-        
+    /*  
     SandBox.insertAdjacentHTML('afterBegin',`
-        <a-entity gltf-model="assets/magnemite/scene.gltf"
+        <a-entity material='color: red'
+            geometry='primitive: box' 
             gps-new-entity-place="latitude: ${latitud}; 
             longitude: ${longitud}" 
             scale="1 1 1">
         </a-entity>`);
+    */
+
+    SandBox.insertAdjacentHTML('afterBegin',`
+        <a-entity 
+            gltf-model="assets/magnemite/scene.gltf" 
+            gps-entity-place="latitude: ${latitud}; longitude: ${longitud};" 
+            scale="1 1 1">
+        </a-entity>`);
+
 }
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
