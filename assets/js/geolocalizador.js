@@ -32,8 +32,8 @@ function exito(posicion) {
         <a-entity 
             material='color: red' 
             geometry='primitive: box' 
-            gps-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
-            scale="1 1 1">
+            gps-new-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
+            scale="5 5 5">
         </a-entity>`
 }
 
