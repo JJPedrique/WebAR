@@ -35,9 +35,17 @@ function exito(posicion) {
     SandBox.innerHTML = `
         <a-entity material='color: red'
             geometry='primitive: box' 
-            gps-new-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
+            gps-new-entity-place="latitude: ${latitud}; longitude: ${longitud};" 
             scale="10 10 10">
-        </a-entity>`
+        </a-entity>
+        
+        <a-entity 
+            gltf-model="assets/magnemite/scene.gltf" 
+            gps-entity-place="latitude:  ${latitud}; longitude: ${longitud};" 
+            scale="1 1 1">
+        </a-entity>
+        
+        `
 }
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
