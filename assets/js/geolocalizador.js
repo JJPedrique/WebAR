@@ -51,7 +51,7 @@ function exito(posicion) {
             animation-mixer="loop: repeat">
         </a-entity>`);
 */
-        }
+}
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
 function error(err) {
