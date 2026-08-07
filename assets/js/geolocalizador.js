@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', () => {
+  obtenerUbicacion();
+});
+
 function obtenerUbicacion() {
   // 1. Verificar si el navegador soporta Geolocalización
   if (!navigator.geolocation) {
@@ -18,7 +22,7 @@ function obtenerUbicacion() {
 
 // Se ejecuta si el usuario acepta y se obtiene la ubicación
 function exito(posicion) {
-    const SandBox = document.getElementById("SandBox");
+    const SandBox = document.getElementById("");
     const latitud = posicion.coords.latitude;
     const longitud = posicion.coords.longitude;
     const precision = posicion.coords.accuracy; // Precisión en metros
@@ -28,12 +32,11 @@ function exito(posicion) {
     console.log(`Precisión: ±${precision} metros`);
 
         
-    SandBox.innerHTML = `    
-        <a-entity 
-            material='color: red' 
-            geometry='primitive: box' 
-            gps-new-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
-            scale="5 5 5">
+    SandBox.innerHTML = `
+        <a-entity material='color: red'
+         geometry='primitive: box' 
+         gps-new-entity-place="latitude: ${latitud}; longitude: ${longitud}" 
+         scale="10 10 10">
         </a-entity>`
 }
 
@@ -54,5 +57,3 @@ function error(err) {
       break;
   }
 }
-
-obtenerUbicacion();
