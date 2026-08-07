@@ -1,6 +1,6 @@
-window.addEventListener('load', () => {
+//window.addEventListener('', () => {
   obtenerUbicacion();
-});
+//});
 
 function obtenerUbicacion() {
   // 1. Verificar si el navegador soporta Geolocalización
@@ -32,7 +32,7 @@ function exito(posicion) {
     console.log(`Precisión: ±${precision} metros`);
 
         
-    SandBox.insertAdjacentHTML('beforeend',`
+    SandBox.insertAdjacentHTML('afterBegin',`
         <a-entity material='color: red'
             geometry='primitive: box' 
             gps-new-entity-place="latitude: ${latitud}; 
