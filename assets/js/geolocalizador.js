@@ -33,8 +33,7 @@ function exito(posicion) {
 
         
     SandBox.insertAdjacentHTML('afterBegin',`
-        <a-entity material='color: red'
-            geometry='primitive: box' 
+        <a-entity gltf-model="assets/magnemite/scene.gltf"
             gps-new-entity-place="latitude: ${latitud}; 
             longitude: ${longitud}" 
             scale="1 1 1">
