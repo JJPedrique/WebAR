@@ -42,11 +42,13 @@ function exito(posicion) {
     */
 
     SandBox.insertAdjacentHTML('afterBegin',`
-        <a-entity gltf-model="./assets/magnemite/scene.gltf" 
-        rotation="0 180 0" scale="0.15 0.15 0.15" 
-        gps-entity-place="longitude: ${longitud}; latitude: ${latitud};" 
-        animation-mixer/>`);
-
+        <a-entity 
+            gltf-model="assets/magnemite/scene.gltf" 
+            rotation="0 180 0" 
+            scale="0.15 0.15 0.15" 
+            gps-entity-place="longitude: ${longitud}; latitude: ${latitud};" 
+            animation-mixer="loop: repeat">
+        </a-entity>`);
 }
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
