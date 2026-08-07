@@ -46,7 +46,7 @@ function exito(posicion) {
             gltf-model="assets/magnemite/scene.gltf" 
             rotation="0 180 0" 
             scale="0.15 0.15 0.15" 
-            position="0 0 10"
+            position="0 0 0"
             gps-entity-place="longitude: ${longitud}; latitude: ${latitud};" 
             animation-mixer="loop: repeat">
         </a-entity>`);
