@@ -1,6 +1,6 @@
-//document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   obtenerUbicacion();
-//});
+});
 
 function obtenerUbicacion() {
   // 1. Verificar si el navegador soporta Geolocalización
