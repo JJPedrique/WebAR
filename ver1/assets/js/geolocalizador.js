@@ -33,15 +33,15 @@ function exito(posicion) {
 
     
     SandBox.insertAdjacentHTML('afterBegin',`
-        <a-entity material='color: red'
+        <a-entity material='color: blue'
             geometry='primitive: box' 
-            gps-new-entity-place="latitude: ${latitud}; 
+            gps-new-entity-place="latitude: ${precision}; 
             longitude: ${longitud}" 
             scale="1 1 1">
         </a-entity>`);
     
 
-        /*
+    /*
     SandBox.insertAdjacentHTML('afterBegin',`
         <a-entity 
             gltf-model="assets/magnemite/scene.gltf" 
@@ -50,7 +50,7 @@ function exito(posicion) {
             gps-entity-place="longitude: ${longitud}; latitude: ${latitud};" 
             animation-mixer="loop: repeat">
         </a-entity>`);
-*/
+    */
 }
 
 // Se ejecuta si hay un error o el usuario rechaza el permiso
