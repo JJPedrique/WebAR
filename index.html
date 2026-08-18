@@ -38,28 +38,6 @@
     </a-box>
   </a-scene>
 
-<script>
-  window.onload = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        // Crear una nueva entidad A-Frame de forma dinámica
-        const scene = document.querySelector('a-scene');
-        const entity = document.createElement('a-box');
-        
-        entity.setAttribute('material', 'color: #E74C3C');
-        entity.setAttribute('scale', '5 5 5');
-        // Coloca el objeto ligeramente desplazado para que sea visible cerca
-        entity.setAttribute('gps-entity-place', `latitude: ${latitude + 0.0001}; longitude: ${longitude + 0.0001};`);
-
-        scene.appendChild(entity);
-      },
-      (err) => console.error('Error al obtener la geolocalización:', err),
-      { enableHighAccuracy: true }
-    );
-  };
-</script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -1,39 +1,69 @@
-import * as THREE from 'three';
+// Convierte grados a radianes
+const toRad = (degrees) => degrees * (Math.PI / 180);
+// Convierte radianes a grados
+const toDeg = (radians) => radians * (180 / Math.PI);
 
-// 1. Create the scene
-const scene = new THREE.Scene();
+/**
+ * Calcula una nueva coordenada GPS a partir de un punto inicial,
+ * una distancia en metros y un rumbo (bearing) en grados.
+ */
+function calculateDestinationCoordinate(lat, lon, distanceInMeters, bearingInDegrees) {
+    const R = 6371000; // Radio de la Tierra en metros
+    const d = distanceInMeters;
+    const brng = toRad(bearingInDegrees);
+    const lat1 = toRad(lat);
+    const lon1 = toRad(lon);
 
-// 2. Create the camera (Field of View, Aspect Ratio, Near clipping, Far clipping)
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 5;
+    const lat2 = Math.asin(
+    Math.sin(lat1) * Math.cos(d / R) +
+    Math.cos(lat1) * Math.sin(d / R) * Math.cos(brng)
+    );
 
-// 3. Create the renderer and attach it to the DOM
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+    const lon2 = lon1 + Math.atan2(
+    Math.sin(brng) * Math.sin(d / R) * Math.cos(lat1),
+    Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2)
+    );
 
-// 4. Create a basic 3D object (a rotating cube)
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
-
-// 5. Animation loop to render and update the scene
-function animate() {
-    requestAnimationFrame(animate);
-
-    // Rotate the cube on every frame
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-
-    renderer.render(scene, camera);
+    return {
+    latitude: toDeg(lat2),
+    longitude: toDeg(lon2)
+    };
 }
 
-animate();
+// Inicializar al cargar la página
+window.addEventListener('load', () => {
+    const cameraEl = document.querySelector('[gps-camera]');
 
-// 6. Handle window resizing
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    // Escuchar el primer evento de actualización de posición GPS que dispara AR.js
+    cameraEl.addEventListener('gps-camera-update-position', (e) => {
+    const currentLat = e.detail.position.latitude;
+    const currentLon = e.detail.position.longitude;
+
+    // Obtener el rumbo (orientación) actual del dispositivo si está disponible, sino asumir 0° (Norte)
+    let heading = 0;
+    if (e.detail.position.heading !== undefined && !isNaN(e.detail.position.heading)) {
+        heading = e.detail.position.heading;
+    }
+
+    // Distancia deseada hacia al frente (en metros)
+    const distanceMeters = 5;
+
+    // Calcular la coordenada destino exactamente frente al usuario
+    const targetCoords = calculateDestinationCoordinate(
+        currentLat,
+        currentLon,
+        distanceMeters,
+        heading
+    );
+
+    // Crear la entidad del cubo
+    const scene = document.querySelector('a-scene');
+    const box = document.createElement('a-box');
+
+    box.setAttribute('material', 'color: #E74C3C; opacity: 0.9;');
+    box.setAttribute('scale', '2 2 2'); // Tamaño del cubo (2m x 2m x 2m)
+    box.setAttribute('gps-entity-place', `latitude: ${targetCoords.latitude}; longitude: ${targetCoords.longitude};`);
+
+    scene.appendChild(box);
+    }, { once: true }); // Executar solo una vez al obtener la posición
 });
