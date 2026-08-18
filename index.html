@@ -20,22 +20,7 @@
   >
     <!-- Cámara de AR con brújula y seguimiento GPS habilitado -->
     <a-camera gps-camera rotation-reader></a-camera>
-
-    <!-- Elemento 3D anclado a Coordenadas GPS -->
-    <!-- REEMPLAZA latitude y longitude con tus coordenadas reales -->
-    <a-box
-      material="color: #4CC3D9; opacity: 0.8;"
-      scale="1 1 1"
-      gps-entity-place="latitude: 10.6427; longitude: -71.6125;"
-    >
-      <a-text
-        value="¡Objeto en GeoAR!"
-        align="center"
-        position="0 1.5 0"
-        scale="2 2 2"
-        color="#FFFFFF"
-      ></a-text>
-    </a-box>
+    
   </a-scene>
 
   <script src="assets/js/script.js"></script>
