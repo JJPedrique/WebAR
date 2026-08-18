@@ -8,9 +8,9 @@ window.onload = () => {
         const scene = document.querySelector('a-scene');
         const entity = document.createElement('a-box');
         
-        entity.setAttribute('material', 'color: #E74C3C');
-        entity.setAttribute('scale', '1 1 1');
-        entity.setAttribute('position','0 -0.1 0.1')
+        //entity.setAttribute('material', 'color: #E74C3C');
+        //entity.setAttribute('scale', '1 1 1');
+        //entity.setAttribute('position','0 0 0')
         // Coloca el objeto ligeramente desplazado para que sea visible cerca
         entity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 
