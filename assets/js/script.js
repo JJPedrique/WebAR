@@ -9,7 +9,7 @@ window.onload = () => {
       const entity = document.createElement('a-box');
       entity.setAttribute('material', 'color: #E74C3C');
       entity.setAttribute('scale', '1 1 1');
-      entity.setAttribute('gps-entity-place', `latitude: ${latitude-0.001}; longitude: ${longitude-0.001};`);
+      entity.setAttribute('gps-entity-place', `latitude: ${latitude - 0.0001}; longitude: ${longitude - 0.0001};`);
 
       scene.appendChild(entity);
     },
