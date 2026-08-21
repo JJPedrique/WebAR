@@ -33,11 +33,11 @@
     <main>
       <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
       
-        <a-camera 
-          gps-new-camera rotation-reader
-          arjs-device-orientation-controls
-          look-controls="enabled: false">
-        </a-camera>
+      <a-camera 
+        gps-camera rotation-reader
+        look-controls-enabled="false"
+        look-controls="touchEnabled: false; mouseEnabled: false">
+      </a-camera>
 
       </a-scene>
     </main>
