@@ -10,6 +10,7 @@ window.onload = () => {
         entity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         entity.setAttribute('gltf-model','assets/3Dmodels/Mario64/scene.gltf');
         entity.setAttribute('scale','5 5 5');
+        entity.setAttribute('position','0 1 1');
         entity.setAttribute('look-at','[gps-camera]');
        
         
@@ -26,4 +27,3 @@ window.onload = () => {
         { enableHighAccuracy: true }
     );
 };
-  
