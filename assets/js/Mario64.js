@@ -28,11 +28,11 @@ window.onload = () => {
     );
 };
 
-window.addEventListener('gps-camera-update-positon',(event) =>{
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    let Lat =  document.getElementById('Latitude');
-    let Lon =  document.getElementById('Logitude');
+window.addEventListener('gps-camera-update-position',(event) =>{
+    const { latitude, longitude } = event.detail.position;
+
+    let Lat =  document.getElementById('latitude');
+    let Lon =  document.getElementById('longitude');
 
     Lat.innerHTML=`Latitude: ${latitude}`;
     Lon.innerHTML=`Longitude: ${longitude}`;
