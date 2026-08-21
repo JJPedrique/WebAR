@@ -6,7 +6,7 @@ window.onload = () => {
         const scene = document.querySelector('a-scene');
 
         const entity = document.createElement('a-entity');
-        entity.setAttribute('gps-entity-place', `latitude: ${latitude - 0.00001}; longitude: ${longitude - 0.00001};`);
+        entity.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         entity.setAttribute('gltf-model','assets/3Dmodels/Mario64/scene.gltf');
         entity.setAttribute('scale','1 1 1');
         entity.setAttribute('look-at','[gps-camera]');
