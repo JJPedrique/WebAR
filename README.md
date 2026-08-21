@@ -61,3 +61,6 @@ WebAR/
 ├── index.html        # Estructura principal de la escena AR y carga de dependencias
 └── README.md         # Documentación del proyecto
 ```
+## Nota
+
+Para el buen funcionamiento, es necesario un dispositivo movil que cuente con una camara y un gps. Probarlo en un computador mostrará un mensaje de error.
