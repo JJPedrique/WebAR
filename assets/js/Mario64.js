@@ -27,3 +27,13 @@ window.onload = () => {
         { enableHighAccuracy: true }
     );
 };
+
+window.addEventListener('gps-camera-update-positon',(event) =>{
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    let Lat =  document.getElementById('Latitude');
+    let Lon =  document.getElementById('Logitude');
+
+    Lat.innerHTML=`Latitude: ${latitude}`;
+    Lon.innerHTML=`Longitude: ${longitude}`;
+});
