@@ -7,7 +7,7 @@ window.onload = () => {
 
         const entity = document.createElement('a-entity');
         scene.appendChild(entity);
-        //entity.setAttribute('gps-entity-place', `latitude: ${latitude - 0.000065}; longitude: ${longitude};`);
+        entity.setAttribute('gps-entity-place', `latitude: ${latitude - 0.000065}; longitude: ${longitude};`);
         entity.setAttribute('gltf-model','assets/3Dmodels/Mario64/scene.gltf');
         entity.setAttribute('scale','5 5 5');
         entity.setAttribute('look-at','[gps-camera]');
@@ -15,7 +15,7 @@ window.onload = () => {
         
         const text = document.createElement('a-text');
         scene.appendChild(text);
-        //text.setAttribute('gps-entity-place', `latitude: ${latitude - 0.000065}; longitude: ${longitude};`);
+        text.setAttribute('gps-entity-place', `latitude: ${latitude - 0.000065}; longitude: ${longitude};`);
         text.setAttribute('value',"¡It's-a me, Mario!");
         text.setAttribute('scale','1 1 1');
         text.setAttribute('look-at','[gps-camera]');
