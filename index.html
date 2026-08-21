@@ -29,18 +29,12 @@
         </div>
       </nav>
     </header>
+
     <main>
-      <a-scene
-        vr-mode-ui="enabled: false"
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
-      >
-        <a-text
-          value="This content will always face you."
-          look-at="[gps-camera]"
-          scale="1 1 1"
-          gps-entity-place="latitude: 10.663919; longitude: -431.664852;"
-        ></a-text>
-        <a-camera gps-camera rotation-reader> </a-camera>
+      <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+      
+        <a-camera gps-camera rotation-reader></a-camera>
+      
       </a-scene>
     </main>
 
