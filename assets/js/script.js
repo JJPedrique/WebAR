@@ -12,11 +12,8 @@ window.onload = () => {
         entity.setAttribute('look-at','[gps-camera]');
         scene.appendChild(entity);       
         
-        let Lat =  document.getElementById('latitude');
-        let Lon =  document.getElementById('longitude');
-        Lat.innerHTML=`Latitude: ${latitude}`;
-        Lon.innerHTML=`Longitude: ${longitude}`;
-
+        let info =  document.getElementById('info');
+        info.innerHTML=`Latitude: ${latitude}    Longitude: ${longitude}`;
         },
         (err) => console.error('Error al obtener la geolocalización:', err),
         { enableHighAccuracy: true }
