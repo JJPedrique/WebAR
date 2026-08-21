@@ -16,7 +16,7 @@ window.onload = () => {
         text.setAttribute('gps-entity-place', `latitude: ${latitude - 0.00006}; longitude: ${longitude};`);
         text.setAttribute('value',"¡It's-a me, Mario!");
         text.setAttribute('scale','1 1 1');
-        text.setAttribute('position','-2 2 0');
+        text.setAttribute('position','-0.5 0.5 0');
         text.setAttribute('look-at','[gps-camera]');
         scene.appendChild(text);        
    
